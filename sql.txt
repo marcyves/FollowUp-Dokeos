@@ -1,0 +1,51 @@
+INSERT INTO `dokeos_podcastcourse`.`tool` (
+`id` ,
+`name` ,
+`link` ,
+`image` ,
+`visibility` ,
+`admin` ,
+`address` ,
+`added_tool` ,
+`target` ,
+`category`
+)
+VALUES (
+'20', 'Follow-up', 'followup/followup.php', 'followup.gif', '0', '1', 'squaregrey.gif', '1', '_self', 'interaction'
+);
+
+CREATE TABLE `form` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`id_task` INT NOT NULL ,
+`id_user` INT NOT NULL ,
+`id_form` INT NOT NULL ,
+`text` VARCHAR( 500 ) NOT NULL
+) ENGINE = MYISAM ;
+
+CREATE TABLE `task` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`desc` VARCHAR( 500 ) NOT NULL ,
+`lien` VARCHAR( 50 ) NOT NULL ,
+`date_debut` DATE NOT NULL ,
+`date_fin` DATE NOT NULL ,
+`destinataire` SET( 'etudiant', 'prof' ) NOT NULL ,
+`id_para_form` INT NOT NULL
+) ENGINE = MYISAM ;
+
+CREATE TABLE `para_form` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`num_par` INT NOT NULL ,
+`desc` VARCHAR( 500 ) NOT NULL
+) ENGINE = MYISAM ;
+
+CREATE TABLE `user_task` (
+`id_user` INT NOT NULL ,
+`id_activite` INT NOT NULL ,
+`date` DATE NOT NULL
+) ENGINE = MYISAM ;
+
+CREATE TABLE `task_form` (
+`id_task` INT NOT NULL ,
+`id_para_form` INT NOT NULL ,
+`num_order` INT NOT NULL
+) ENGINE = MYISAM ;
