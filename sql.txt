@@ -1,4 +1,4 @@
-INSERT INTO `dokeos_podcastcourse`.`tool` (
+INSERT INTO `tool` (
 `id` ,
 `name` ,
 `link` ,
