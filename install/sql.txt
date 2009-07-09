@@ -15,7 +15,7 @@ INSERT INTO `tool` (
 `category`
 )
 VALUES (
-'20', 'Follow-up', 'followup/followup.php', 'followup.gif', '0', '1', 'squaregrey.gif', '1', '_self', 'interaction'
+'20', 'Follow-up Admin', 'followup/followup.php', 'followup.gif', '0', '1', 'squaregrey.gif', '1', '_self', 'interaction'
 );
 
 INSERT INTO `tool` (
@@ -31,7 +31,7 @@ INSERT INTO `tool` (
 `category`
 )
 VALUES (
-'20', 'Follow-up Admin', 'followup/followup_space.php', 'followup.gif', '0', '1', 'squaregrey.gif', '1', '_self', 'interaction'
+'20', 'Follow-up', 'followup/followup_space.php', 'followup.gif', '0', '1', 'squaregrey.gif', '1', '_self', 'interaction'
 );
 
 CREATE TABLE `followup_section_answer` (
@@ -60,9 +60,9 @@ CREATE TABLE `followup_task` (
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
   `destinataire` set('etudiant','prof') NOT NULL,
+  `visibility` tinyint(1) NOT NULL default '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
-
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,15 +70,16 @@ CREATE TABLE `followup_task` (
 -- Table structure for table `followup_task_feedback`
 --
 
-CREATE TABLE `followup_task_feedback` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE  `dokeos_STAGE`.`followup_task_feedback` (
+  `id` int(11) NOT NULL auto_increment,
   `id_followup_task` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_prof` int(11) NOT NULL,
   `feedback` varchar(500) NOT NULL,
   `grade` set('A','B','C','D','E','F') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `status` set('WAITING','INPROGRESS','SUBMITTED','ACKNOWLEDGED') NOT NULL default 'WAITING',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
 
 --
 -- Dumping data for table `followup_task_feedback`

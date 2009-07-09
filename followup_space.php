@@ -59,8 +59,8 @@ if(!is_array($current_group) ) {
 //display some error message
 }
 
-$nameTools = get_lang("GroupSpace");
-$interbreadcrumb[] = array ("url" => "followup.php", "name" => get_lang("GroupManagement"));
+$nameTools = get_lang("FollowUpSpace");
+$interbreadcrumb[] = array ("url" => "followup.php", "name" => get_lang("FollowUpGroupManagement"));
 
 /*
 -----------------------------------------------------------
@@ -74,10 +74,10 @@ Display::display_header($nameTools,"Group");
 	Databases
 -----------------------------------------------------------
 */
-$section_table = Database::get_course_table(TABLE_SECTION);
 $task_table = Database::get_course_table(TABLE_TASK);
 $task_feedback = Database::get_course_table(TABLE_TASK_FEEDBACK);
-$task_section = Database::get_course_table(TABLE_SECTION);
+
+$section_table = Database::get_course_table(TABLE_SECTION);
 $task_section_answer = Database::get_course_table(TABLE_SECTION_ANSWER);
 $group_tutor_table = Database::get_course_table(TABLE_GROUP_TUTOR);
 $uid = $_SESSION[_user][user_id];
@@ -92,7 +92,10 @@ while ($data = mysql_fetch_array($result_gid)){
 //echo $gid;
 
 $current_group['id'] = $gid;
-
+if ($gid == '')
+{
+	echo "<h3>Pas de groupe créé</h3>"; 
+}else{
 /*
 -----------------------------------------------------------
 	Actions and Action links
@@ -356,6 +359,7 @@ else
 
 echo ' </table>
 </div>';
+}
 }
 
 /**

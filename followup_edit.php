@@ -307,14 +307,14 @@ else
 }
 $referer = parse_url($_SERVER['HTTP_REFERER']);
 $referer = basename($referer['path']);
-if ($referer != 'group_space.php' && $referer != 'group.php')
+if ($referer != 'followup_space.php' && $referer != 'followup.php')
 {
-	$referer = 'group.php';
+	$referer = 'followup.php';
 }
 Display :: display_header($nameTools, "Group");
 api_display_tool_title($nameTools);
 ?>
-<a href="group_space.php"><?php  echo get_lang('GroupSpace') ?></a>
+<a href="followup_space.php"><?php  echo get_lang('GroupSpace') ?></a>
 <br/>
 <br/>
 <?php
