@@ -14,38 +14,78 @@ VALUES (
 '20', 'Follow-up', 'followup/followup.php', 'followup.gif', '0', '1', 'squaregrey.gif', '1', '_self', 'interaction'
 );
 
-CREATE TABLE `form` (
-`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`id_task` INT NOT NULL ,
-`id_user` INT NOT NULL ,
-`id_form` INT NOT NULL ,
-`text` VARCHAR( 500 ) NOT NULL
-) ENGINE = MYISAM ;
+CREATE TABLE `followup_section_answer` (
+  `id_task` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `section_order` int(11) NOT NULL,
+  `section_answer` char(80) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `task` (
-`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`desc` VARCHAR( 500 ) NOT NULL ,
-`lien` VARCHAR( 50 ) NOT NULL ,
-`date_debut` DATE NOT NULL ,
-`date_fin` DATE NOT NULL ,
-`destinataire` SET( 'etudiant', 'prof' ) NOT NULL ,
-`id_para_form` INT NOT NULL
-) ENGINE = MYISAM ;
+--
+-- Dumping data for table `followup_section_answer`
+--
 
-CREATE TABLE `para_form` (
-`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`num_par` INT NOT NULL ,
-`desc` VARCHAR( 500 ) NOT NULL
-) ENGINE = MYISAM ;
 
-CREATE TABLE `user_task` (
-`id_user` INT NOT NULL ,
-`id_activite` INT NOT NULL ,
-`date` DATE NOT NULL
-) ENGINE = MYISAM ;
+-- --------------------------------------------------------
 
-CREATE TABLE `task_form` (
-`id_task` INT NOT NULL ,
-`id_para_form` INT NOT NULL ,
-`num_order` INT NOT NULL
-) ENGINE = MYISAM ;
+--
+-- Table structure for table `followup_task`
+--
+
+CREATE TABLE `followup_task` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `desc` varchar(500) NOT NULL,
+  `lien` varchar(50) NOT NULL,
+  `date_debut` date NOT NULL,
+  `date_fin` date NOT NULL,
+  `destinataire` set('etudiant','prof') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
+
+--
+-- Dumping data for table `followup_task`
+--
+
+INSERT INTO `followup_task` VALUES(82, 'Activité', 'Entrez ici la description', '', '2009-01-08', '2009-02-19', 'etudiant');
+INSERT INTO `followup_task` VALUES(83, 'Rapport 1', 'Entrez ici la description', '', '2009-01-01', '2009-01-01', 'prof');
+INSERT INTO `followup_task` VALUES(84, 'Rapport 2', 'Entrez ici la description', '', '2009-06-04', '2010-09-16', 'prof');
+INSERT INTO `followup_task` VALUES(85, 'Tâche de test', 'Je décris ma tâche', '', '2009-08-11', '2010-09-19', 'etudiant');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followup_task_feedback`
+--
+
+CREATE TABLE `followup_task_feedback` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_followup_task` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_prof` int(11) NOT NULL,
+  `feedback` varchar(500) NOT NULL,
+  `grade` set('A','B','C','D','E','F') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `followup_task_feedback`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followup_task_section`
+--
+
+CREATE TABLE `followup_task_section` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_followup_task` int(11) NOT NULL,
+  `section_title` varchar(500) NOT NULL,
+  `section_order` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=93 ;
+
+--
+-- Dumping data for table `followup_task_section`
