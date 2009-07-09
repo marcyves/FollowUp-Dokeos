@@ -1,3 +1,7 @@
+--
+-- INSERTs to create the followUp and followUp Admin tools on the course page 
+--
+
 INSERT INTO `tool` (
 `id` ,
 `name` ,
@@ -12,6 +16,22 @@ INSERT INTO `tool` (
 )
 VALUES (
 '20', 'Follow-up', 'followup/followup.php', 'followup.gif', '0', '1', 'squaregrey.gif', '1', '_self', 'interaction'
+);
+
+INSERT INTO `tool` (
+`id` ,
+`name` ,
+`link` ,
+`image` ,
+`visibility` ,
+`admin` ,
+`address` ,
+`added_tool` ,
+`target` ,
+`category`
+)
+VALUES (
+'20', 'Follow-up Admin', 'followup/followup_space.php', 'followup.gif', '0', '1', 'squaregrey.gif', '1', '_self', 'interaction'
 );
 
 CREATE TABLE `followup_section_answer` (
@@ -43,14 +63,6 @@ CREATE TABLE `followup_task` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
 
---
--- Dumping data for table `followup_task`
---
-
-INSERT INTO `followup_task` VALUES(82, 'Activité', 'Entrez ici la description', '', '2009-01-08', '2009-02-19', 'etudiant');
-INSERT INTO `followup_task` VALUES(83, 'Rapport 1', 'Entrez ici la description', '', '2009-01-01', '2009-01-01', 'prof');
-INSERT INTO `followup_task` VALUES(84, 'Rapport 2', 'Entrez ici la description', '', '2009-06-04', '2010-09-16', 'prof');
-INSERT INTO `followup_task` VALUES(85, 'Tâche de test', 'Je décris ma tâche', '', '2009-08-11', '2010-09-19', 'etudiant');
 
 -- --------------------------------------------------------
 
